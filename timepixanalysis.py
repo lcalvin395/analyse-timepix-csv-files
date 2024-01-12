@@ -71,6 +71,8 @@ def cluster(y,x):
 
 #usedlist=np.array([[1,2,3]])
 #print(usedlist)
+count=0
+tracknumber=[]
 pixelnumber=[]
 energyvalue=[[]]
 usedlist=[]
@@ -119,6 +121,9 @@ for y in range(len(energyvalue)):
             #print(energyvalue[y][x])
             #print("x:",x,"y:",y)
             cluster(y,x)
+            count=count+1
+            tracknumber.append(count)
+
 
 
 
@@ -145,7 +150,9 @@ for j in range(y-1,y+1):
             tochecklist.append([j,i])'''
 
 for g in range(len(trackx)):
+    print("tracknumber:",tracknumber[g])
     print("track x position:",trackx[g],'\n',"track y position:",tracky[g],'\n',
           "mean energy deposited:",meanenergy[g],'\n',"median energy deposited:",medianenergy[g],'\n',
-          "max energy deposited:",maxenergy[g])
+          "max energy deposited:",maxenergy[g],"\n")
 
+print("NUMBER OF TRACKS:",len(tracknumber),"\n")
