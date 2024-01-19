@@ -27,6 +27,7 @@ def cluster(y,x):
     tochecklist=[[y,x]]
     count=0
     sumx=[]
+    
     sumy=[]
     while len(tochecklist)>0:
         y=tochecklist[0][0]
