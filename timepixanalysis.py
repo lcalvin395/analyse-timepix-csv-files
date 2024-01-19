@@ -64,6 +64,7 @@ def cluster(y,x):
     trackx.append(averagex)
     tracky.append(averagey)
             
+#def timestamp(y,x,energyvalue):
 
 
 
@@ -72,6 +73,7 @@ def cluster(y,x):
 #usedlist=np.array([[1,2,3]])
 #print(usedlist)
 count=0
+count2=0
 tracknumber=[]
 pixelnumber=[]
 energyvalue=[[]]
@@ -91,8 +93,10 @@ x=[]
 y=[]
 linenumber=0
 path="/Users/lukecalvin/2023/ELI-NP DATA/ump43_timepixPC/ieap_timepix/20231128/run_03/"
-file="28_11_23_run3_shot4_J.csv"
-f = open('%s%s'%(path,file),'r')
+csvfile="28_11_23_run3_shot4_J.csv"
+txtfile="shot_4_J7-W0074.txt"
+f = open('%s%s'%(path,csvfile),'r')
+d = open('%s%s'%(path,txtfile),'r')
 for line in f.readlines():
     #print(line)
     columns=(line.split(','))
@@ -123,6 +127,13 @@ for y in range(len(energyvalue)):
             cluster(y,x)
             count=count+1
             tracknumber.append(count)
+            #timestamp(y,x,energyvalue[y][x])
+            #for line in f.readlines():
+            #    if line.find("%d") and line.find("%d"%energyvalue)
+
+
+
+
 
 
 
@@ -150,9 +161,15 @@ for j in range(y-1,y+1):
             tochecklist.append([j,i])'''
 
 for g in range(len(trackx)):
-    print("tracknumber:",tracknumber[g])
+    #print(int(tracky[g]))
+    if (((int(tracky[g])) == (0)) or ((int(tracky[g])) == (254)) or ((int(trackx[g])) == (0)) or ((int(trackx[g])) == (254))):
+        #print("YES")
+        continue
+    else:
+        count2=count2+1
+    print("tracknumber:",count2)
     print("track x position:",trackx[g],'\n',"track y position:",tracky[g],'\n',
           "mean energy deposited:",meanenergy[g],'\n',"median energy deposited:",medianenergy[g],'\n',
           "max energy deposited:",maxenergy[g],"\n")
 
-print("NUMBER OF TRACKS:",len(tracknumber),"\n")
+print("NUMBER OF TRACKS:",count2,"\n")
